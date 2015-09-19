@@ -1,0 +1,10 @@
+@charset "utf-8";
+
+/* ==========================================================================
+   variables
+   ========================================================================== */
+$btnHeight: 44px;
+$btnListMap: (
+        ("btnName":"sub", "bgColor":blue, "color":red),
+        ("btnName":"warn", "bgColor":green, "color":yellow)
+);

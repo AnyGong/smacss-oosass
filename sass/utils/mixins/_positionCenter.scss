@@ -1,0 +1,20 @@
+@charset "utf-8";
+
+/* ==========================================================================
+   positionCenter
+   ========================================================================== */
+/// 定位居中效果
+///
+/// @param {length} $width
+/// @param {length} $height [$width]
+/// @param {num} $zIndex [null]
+/// @author Any.Gong
+/// @since 2015.09.16
+@mixin positionCenter($width,$height:$width,$zIndex:null) {
+  position: absolute;
+  z-index: $zIndex;
+  top: 50%;
+  left: 50%;
+  margin-top: -($height/2);
+  margin-left: -($width/2);
+}

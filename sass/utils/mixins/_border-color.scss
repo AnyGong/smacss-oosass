@@ -1,0 +1,17 @@
+@charset "utf-8";
+
+/* ==========================================================================
+   _border-color
+   ========================================================================== */
+
+/// border-color 简化写法
+///
+/// @param { color | direction } $anyValue -- 值类型，Only [ is-valid-color($anyValue)  ,  direction-line($value)!=null]
+/// @param { color } $color [ null ] -- 如果 $color!=null, length($color)的值必须 为1 或 2。如果 length($anyValue)==3, length($color)也可以为 3。
+/// @author Any.Gong
+/// @since 2015.09.07
+@mixin border-color($anyValue,$color:null) {
+   @include optimization-direction-value(border, $anyValue, $color, $suffix: color);
+}
+   
+   

@@ -1,0 +1,16 @@
+@charset "utf-8";
+
+/* ==========================================================================
+   error_message
+   ========================================================================== */
+/// 调用 mixin 时，出错的提示信息
+///
+/// @access inside
+/// @param { String } $mixinName  -- @mixin 名字
+/// @param { String } $errorMessage [ null ]  -- 补充错误提示信息
+/// @return { String }
+/// @author Any.Gong
+/// @since 2015.09.06
+@function error_message($mixinName,$errorMessage:null) {
+  @return '调用 @mixin #{$mixinName} 时，有错误，请查看出错信息！'+$errorMessage;
+}

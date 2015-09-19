@@ -1,0 +1,18 @@
+@charset "utf-8";
+
+/* ==========================================================================
+   _border-width
+   ========================================================================== */
+
+/// border-width 简化写法
+///
+/// @param { length | direction } $anyValue -- 值类型，Only [ is-valid-length($anyValue)  ,  direction-line($anyValue)!=null]
+/// @param { length } $length [ null ] -- 如果 $length!=null, length($length)的值必须 为1 或 2。如果 length($anyValue)==3, length($length)也可以为 3。
+/// @author Any.Gong
+/// @since 2015.09.07
+@mixin border-width($anyValue,$length:null) {
+   @include optimization-direction-value(border, $anyValue, $length, $suffix: width);
+}
+
+   
+   

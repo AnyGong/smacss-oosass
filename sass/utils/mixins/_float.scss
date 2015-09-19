@@ -1,0 +1,47 @@
+@charset "utf-8";
+
+/* ==========================================================================
+   float
+   ========================================================================== */
+/// 元素浮动，当重置浮动时，改变元素的display元素类型
+///
+/// @example scss - Usage
+///   .element {
+///     @include float(left);
+///   }
+///   .element {
+///     @include float(right);
+///   }
+///   .element {
+///     @include float(none);
+///   }
+/// @example css - CSS Output
+///   .element {
+///     float:left;
+///   }
+///   .element {
+///     float:right;
+///   }
+///   .element {
+///     float: none;
+///   }
+/// @example css - Support IT-IE6 Insert CSS ==> IE6下元素浮动，同时元素有margin左右间距时，会产生双倍间距，因此做此处理
+///   .element {
+///      float: left | right;
+///     _display: inline;
+///   }
+/// @param {String} $side -$side value Only is `[ left | none| right ]`
+/// @param {String} $block [block]
+/// @author Any.Gong
+/// @since 15.02.26
+@mixin float($side,$display:block) {
+  @if $side=="none" {
+    float: none;
+    display: $display;
+  } @else {
+    float: $side;
+    @if $IT-IE6 and $side!="none" {
+      _display: inline;
+    }
+  }
+}

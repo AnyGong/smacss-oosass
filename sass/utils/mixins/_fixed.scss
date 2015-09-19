@@ -1,0 +1,15 @@
+@charset "utf-8";
+
+/* ==========================================================================
+   absolute
+   ========================================================================== */
+
+/// position fixed
+///
+/// @param { length | direction } $anyValue -- 值类型，Only `length(direction-line($anyValue))<3.
+/// @param { length } $length  -- length($length)的值必须 为1 或 2。
+/// @author Any.Gong
+/// @since 2015.9.16
+@mixin fixed($anyValue,$length) {
+  @include position(fixed, $anyValue, $length);
+}

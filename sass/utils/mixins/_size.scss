@@ -1,0 +1,31 @@
+@charset "utf-8";
+
+/* ==========================================================================
+   size
+   ========================================================================== */
+/// 设置元素的大小,默认宽度等于高的高度。
+///
+/// @example scss - Usage
+///   .element {
+///     @include size(120px);
+///   }
+///   .element {
+///     @include size(120px,130px);
+///   }
+/// @example css - CSS Output
+///   .element {
+///     width:120px;
+///     height:120px;
+///   }
+///   .element {
+///     width:120px;
+///     height:130px;
+///   }
+/// @param {Number} $width -Width
+/// @param {Number} $height [$width] -Height
+/// @author Any.Gong
+/// @since 15.05.28
+@mixin size($width, $height: $width) {
+   width: $width;
+   height: $height
+}

@@ -1,0 +1,153 @@
+@charset "utf-8";
+
+/* ==========================================================================
+   _constant.scss
+   ========================================================================== */
+/**
+ * Z-INDEX
+ * UNIT
+ * SUPPORT-IE
+ * FONT
+ * DIRECTION
+ */
+
+/* ==========================================================================
+   _Z-INDEX.scss
+   ========================================================================== */
+/// z-index 站点设定
+////
+/// @access constant
+/// @group constant
+/// @type {Map}
+/// @author Any.Gong
+/// @since 15.06.09
+////
+$Z-INDEX: (
+        'goku': 9001,
+        'modal': 5000,
+        'dropdown': 4000,
+        'social': 3000,
+        'default': 1,
+        'below': -1
+) !global;
+
+/* ==========================================================================
+   _UNIT.scss
+   ========================================================================== */
+/**
+ * UNIT
+ */
+/// 在布局中影响元素位置大小的单位。
+////
+/// @access constant
+/// @group constant
+/// @type { map }
+/// @author Any.Gong
+/// @since 15.02.04
+////
+$UNIT: ('px':'px', '%':'%', 'em':'em', 'rem':'rem') !global;
+
+/* ==========================================================================
+   _SUPPORT-IE.scss
+   ========================================================================== */
+/// 关于IE相关版本支持的设定
+////
+/// @access private
+/// @group constant
+/// @type {Map}
+/// @author Any.Gong
+/// @since 15.02.04
+////
+$SUPPORT-IE: (
+        "IE6":false,
+        "IE7":true,
+        "IE8":true
+) !global;
+/// 是否支持 ie6
+////
+/// @access constant
+/// @group constant
+/// @type {Boolean}
+/// @require $SUPPORT-IE
+/// @author Any.Gong
+/// @since 15.02.04
+////
+$IT-IE6: map_get($SUPPORT-IE, "IE6") !global;
+/// 是否支持 ie7
+////
+/// @access constant
+/// @group constant
+/// @require $SUPPORT-IE
+/// @type {Boolean}
+/// @author Any.Gong
+/// @since 15.02.04
+////
+$IT-IE7: map_get($SUPPORT-IE, "IE7") !global;
+/// 是否支持 ie8
+////
+/// @access constant
+/// @group constant
+/// @require $SUPPORT-IE
+/// @type {Boolean}
+/// @author Any.Gong
+/// @since 15.02.04
+////
+$IT-IE8: map_get($SUPPORT-IE, "IE8") !global;
+
+/* ==========================================================================
+   _FONT.scss
+   ========================================================================== */
+/**
+ * Font
+ */
+// 宋体 ( 默认字体 ) <br>
+/// `tahoma (无衬线字体)` ---字符间距较小，而且对Unicode字集的支持范围较大，因为Tahoma很容易取得之外，
+/// 也是因为Tahoma没有一些Arial为人诟病的缺点，例如大写`“I”与小写“l”`难以分辨等
+///
+/// @access constant
+/// @group constant
+/// @type {List}
+/// @author Any.Gong
+/// @since 15.02.07
+$FONT_SONTI: 'tahoma,arial', 'Hiragino Sans GB', '\\5b8b\\4f53', 'sans-serif';
+
+/// 微软雅黑 <br>
+/// `----`用户没有 `微软雅黑` 字体的话，采取 `tahoma (无衬线字体)` 替代
+/// @access constant
+/// @group constant
+/// @type {List}
+/// @require $FONT_SONTI
+/// @author Any.Gong
+/// @since 15.02.07
+$FONT_YAHEI: 'Microsoft YaHei',#{$FONT_SONTI};
+
+/// 英文字体 `----`全站英文字体设置,不含中文
+///
+/// @access constant
+/// @group constant
+/// @type {List}
+/// @author Any.Gong
+/// @since 15.02.07
+$FONT_EN: 'Roboto', 'Helvetica', 'Tahoma', 'Arial', 'sans-serif', 'SimSun', '宋体';
+
+/// 代码区域字体
+/// @access constant
+/// @group constant
+/// @type {List}
+/// @author Any.Gong
+/// @since 15.02.07
+$FONT_CODE: 'Courier New', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Monaco', monospace;
+
+/* ==========================================================================
+   _DIRECTION.scss
+   ========================================================================== */
+/// 方向
+///
+/// @access constant
+/// @group constant
+/// @type { list }
+/// @author Any.Gong
+/// @since 15.02.04
+////
+$DIRECTION: ('top':'top', 'right':'right', 'bottom':'bottom', 'left':'left') !global;
+

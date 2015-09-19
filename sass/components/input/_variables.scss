@@ -1,0 +1,13 @@
+@charset "utf-8";
+
+/* ==========================================================================
+   variables --  input
+   ========================================================================== */
+$inputBorderColor: #ccc;
+$inputBorderRadius: null;
+$inputHeight: 42px;
+$inputBaseHeight: 20px;
+$inputPadLR: 10px;
+$inputPadTB: (($inputHeight)-($inputBaseHeight)-(2px))/2;
+$inputPlaceHolderLeftSpace: $inputPadLR+5px;
+$inputPlaceHolderTopSpace: 11px;

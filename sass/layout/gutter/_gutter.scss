@@ -1,0 +1,61 @@
+@charset "utf-8";
+
+/* ==========================================================================
+   u-gutter
+   ========================================================================== */
+@for $i from 1 through length($gutterProperty) {
+  $propertyStr: nth($gutterProperty, $i);
+  $lengthPropertyStr: str_length($propertyStr);
+  $property1: map_get($directionEllipsis, if($lengthPropertyStr==1, $propertyStr, str_slice($propertyStr, 1, 1)));
+  $property2: map_get($directionEllipsis, if($lengthPropertyStr==2, str_slice($propertyStr, 2), null));
+  @if $lengthPropertyStr==3 {
+    $property2: map_get($directionEllipsis, str_slice($propertyStr, 2, 2));
+  }
+  $property3: map_get($directionEllipsis, if(str_length($propertyStr)==3, str_slice($propertyStr, 3), null));
+  // 有空隙的 gutter
+  .gutter-m#{$propertyStr} {
+    margin-#{$property1}: $gutter;
+    @if $property2!=null {
+      margin-#{$property2}: $gutter;
+    }
+    @if $property3!=null {
+      margin-#{$property3}: $gutter;
+    }
+  }
+  .gutter-p#{$propertyStr} {
+    padding-#{$property1}: $gutter;;
+    @if $property2!=null {
+      padding-#{$property2}: $gutter;
+    }
+    @if $property3!=null {
+      padding-#{$property3}: $gutter;
+    }
+  }
+  // 无空隙的gutter
+  .none-m#{$propertyStr} {
+    margin-#{$property1}: 0 !important;
+    @if $property2!=null {
+      margin-#{$property2}: 0 !important;
+    }
+    @if $property3!=null {
+      margin-#{$property3}: 0 !important;
+    }
+  }
+  .none-p#{$propertyStr} {
+    padding-#{$property1}: 0 !important;
+    @if $property2!=null {
+      padding-#{$property2}: 0 !important;
+    }
+    @if $property3!=null {
+      padding-#{$property3}: 0 !important;
+    }
+  }
+}
+
+.gutter-m {
+  margin: $gutter;
+}
+
+.gutter-p {
+  padding: $gutter;;
+}

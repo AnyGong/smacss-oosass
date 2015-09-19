@@ -1,0 +1,40 @@
+@charset "utf-8";
+
+/* ==========================================================================
+   inline-block
+   ========================================================================== */
+/// 转换盒子模型 convert to `inline-block`
+///
+/// @example scss - Usage
+///   .element {
+///     @include inline-block;
+///   }
+///   .element {
+///     @include inline-block(middle | top | bottom);
+///   }
+/// @example css - CSS Output
+///   .element {
+///     display: inline-block;
+///   }
+///   .element {
+///     display: inline-block;
+///     vertical-align: middle | top | bottom
+///   }
+/// @example css - Support IT-IE7 Insert CSS ==> 低版本不支持 block 元素转换为 inline-block ，因此触发 hack
+///   .element{
+///     *zoom:1;
+///     *display:inline;
+///     *vertical-align:auto;
+///   }
+/// @param {String} $align [null] -Vertical align
+/// @author Any.Gong
+/// @since 15.02.04
+@mixin inline-block($align: null) {
+   display: inline-block;
+   @if $IT-IE7 {
+      *zoom: 1;
+      *display: inline;
+      *vertical-align: auto;
+   }
+   vertical-align: $align;
+}

@@ -1,0 +1,19 @@
+@charset "utf-8";
+
+/* ==========================================================================
+   z-index
+   ========================================================================== */
+
+/// 为了防止站点中的 z-index 设定混乱，所以采用  map形式管理。
+///
+/// @param { string } $layer  -- 指定的 Layer名称
+/// @return { number | null }
+/// @since 2015.09.09
+/// @author Any.Gong
+
+@function z-index($layer) {
+  @if not map-has-key($Z-INDEX, $layer) {
+    @warn 'No z-index found for `#{$layer}`.';
+  }
+  @return map-get($Z-INDEX, $layer);
+}

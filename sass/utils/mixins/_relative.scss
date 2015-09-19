@@ -1,0 +1,20 @@
+@charset "utf-8";
+
+/* ==========================================================================
+   relative
+   ========================================================================== */
+
+/// relative
+///
+/// @param { length | direction } $anyValue [null] -- 值类型，Only `length(direction-line($anyValue))<3.
+/// @param { length } $length [null]  -- length($length)的值必须 为1 或 2。
+/// @author Any.Gong
+/// @since 2015.9.16
+@mixin relative($anyValue:null,$length:null) {
+  @if $anyValue==null{
+    position: relative;
+  }
+  @else{
+    @include position(relative, $anyValue, $length);
+  }
+}

@@ -1,0 +1,41 @@
+@charset "utf-8";
+
+/* ==========================================================================
+   optimization-direction-value
+   ========================================================================== */
+/// 在带有方向的属性中，对该属性的一些书写css进行优化。主要适用于属性 padding margin border border-radius position
+///
+/// @access inside
+/// @param { string } $property -- 适用的属性名称，
+/// @param { length | directionLine } $unknownTypeValue -- Only  length(direction-line($unknownTypeValue))== ( 2 or 3) or is-valid-length;
+/// @param { length | borderStyle | color } $anyValue [ null ] -- `$anyValue` 符合类型仅仅是 [is-valid-length,is-valid-color,is-valid-borderStyle]。如果 $anyValue!=null, length($anyValue)的值必须 为1 或 2。如果 length($unknownTypeValue)==3, length($anyValue)可以为 3。
+/// @param { String } $prefix [ null ] -- 属性是否有前缀。eg： border-width 带有 width 后缀。border-top-left-radius 带有 radius 后缀
+/// @param { String } $suffix [ null ] -- 属性是否有后缀。eg： border-top-left-radius 属于组合型，前缀为 top-left 后缀为 radius
+/// @throw 调用 @mixin padding 时，有错误，请查看出错信息！`$value` 或 `$optValue` 不符合值要求
+/// @author Any.Gong
+/// @since 2015.09.06
+@mixin optimization-direction-value($property,$unknownTypeValue,$anyValue,$prefix:null,$suffix:null) {
+  $DIRECTION:map_values($DIRECTION);
+  // 判定是否带有后缀属性,有的话就加到后面。
+  $suffixValue: if($suffix==null, null,-#{$suffix});
+  // 1、$unknownTypeValue 符合的验证类型 (color length borderStyle).
+  @if is-valid-length($unknownTypeValue) or is-valid-color($unknownTypeValue) or is-valid-borderStyle($unknownTypeValue) {
+    @for $i from 1 through length($unknownTypeValue) {
+      // 判定是否带有前缀属性，无的话就运用  trbl 取值
+      $prefixValue: if($prefix==null, nth($DIRECTION, $i), $prefix);
+      #{$property}-#{$prefixValue}#{$suffix}: nth($unknownTypeValue, $i);
+    }
+  }
+  // 2、 $unknownTypeValue 符合方向验证 and $anyValue 符合的验证类型 (color length borderStyle).
+  @else if direction-line($unknownTypeValue)!=null and (is-valid-length($anyValue) or is-valid-color($anyValue) or is-valid-borderStyle($anyValue)) {
+    $getDirection: direction-line($unknownTypeValue);
+    #{$property}-#{nth($getDirection, 1)}#{$suffixValue}: nth($anyValue, 1);
+    #{$property}-#{nth($getDirection, 2)}#{$suffixValue}: if(length($anyValue)==1, nth($anyValue, 1), nth($anyValue, 2)); //如果只传入了有1个方向值，那第2方向的值就默认为第1方向的个值
+    @if length($getDirection)==3{
+      #{$property}-#{nth($getDirection, 3)}#{$suffixValue}: if(length($anyValue)<3, nth($anyValue, 1), nth($anyValue, 3)); //如果只有1个或2个方向值，那第3方向的值就默认为第1方向的个值
+    }
+  }
+  @else {
+    @error error_message($property, '#{$unknownTypeValue} 或 #{$anyValue} 不符合值要求');
+  }
+}

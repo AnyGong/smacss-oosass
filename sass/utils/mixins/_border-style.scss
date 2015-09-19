@@ -1,0 +1,17 @@
+@charset "utf-8";
+
+/* ==========================================================================
+   _border-style
+   ========================================================================== */
+
+/// border-style 简化写法
+///
+/// @param { borderStyle | direction } $anyValue -- 值类型，Only [ is-valid-borderStyle($anyValue)  ,  direction-line($anyValue)!=null]
+/// @param { borderStyle } $borderStyle [ null ] -- 如果 $borderStyle!=null, length($borderStyle)的值必须 为1 或 2。如果 length($anyValue)==3, length($borderStyle)也可以为 3。
+/// @author Any.Gong
+/// @since 2015.09.07
+@mixin border-style($anyValue,$borderStyle:null) {
+   @include optimization-direction-value(border, $anyValue, $borderStyle, $suffix: style);
+}
+   
+   

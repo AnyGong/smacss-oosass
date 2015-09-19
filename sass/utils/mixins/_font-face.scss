@@ -1,0 +1,19 @@
+@charset "utf-8";
+
+/* ==========================================================================
+   font-face
+   ========================================================================== */
+/// 自定义字体图标
+///
+/// @param {String} $fontCustomName - 自定义字体名称
+/// @param {String} $fontResourceName - 源文件的字体名称
+/// @param {String} $fontsPath - 字体路径
+/// @author Any.Gong
+/// @since 15.06.29
+@mixin font-face($fontCustomName,$fontResourceName,$fontsPath) {
+   @font-face {
+      font-family: '#{$fontCustomName}';
+      src: url('#{$fontsPath}/#{$fontResourceName}.eot'); /* IE9*/
+      src: url('#{$fontsPath}/#{$fontResourceName}.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('#{$fontsPath}/#{$fontResourceName}.woff') format('woff'), /* chrome、firefox */ url('#{$fontsPath}/#{$fontResourceName}.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/ url('#{$fontsPath}/#{$fontResourceName}.svg#iconfont') format('svg'); /* iOS 4.1- */
+   }
+}

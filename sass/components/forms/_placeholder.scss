@@ -1,0 +1,17 @@
+@charset "utf-8";
+
+/* ==========================================================================
+   placeholder
+   ========================================================================== */
+/* radio / checkbox 模拟效果时的选择 */
+%formOptionHidden{
+   position: relative;
+   z-index: -1;
+   width: 0;
+   height: 0;
+   margin-right: 0;
+   font-size: 0;
+   @-moz-document url-prefix() {
+      margin-left: -14px;
+   }
+}

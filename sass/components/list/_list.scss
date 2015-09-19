@@ -1,0 +1,42 @@
+@charset "utf-8";
+
+/* ==========================================================================
+   _list.scss
+   ========================================================================== */
+.list {
+  margin-bottom: $listItemGap;
+  @include clear-fix;
+  &.no-gutter {
+    margin-bottom: 0;
+  }
+  .list-label {
+    text-align: right;
+    padding-right: 10px;
+  }
+  .list-label, .list-text {
+    @include inline-block(middle);
+  }
+  .list-text {
+    margin-right: 15px;
+    &.no-gutter {
+      margin-right: 0;
+    }
+  }
+  .item-label {
+    float: left;
+    text-align: right;
+    padding-right: 6px;
+  }
+  .item-after {
+    float: right;
+    margin-right: 15px;
+    &.no-gutter {
+      margin-right: 0;
+    }
+  }
+  .item-text {
+    padding-right: 15px;
+    overflow: hidden;
+    *zoom: 1;
+  }
+}

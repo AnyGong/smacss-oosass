@@ -1,0 +1,23 @@
+{
+  "name": "smacss-oosass",
+  "version": "0.1.0",
+  "authors": "Any.Gong",
+  "description": "一个SASS为预处理器的前端样式架构模板",
+  "main": "sass/style.scss",
+  "keywords": [
+    "scss",
+    "smacss",
+    "sass",
+    "oocss",
+    "oosass"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/AnyGong/smacss-oosass",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

@@ -1,0 +1,13 @@
+@charset "utf-8";
+
+/* ==========================================================================
+   _button.scss
+   ========================================================================== */
+@each $btnOperateName,$btnBgColor,$btnColor in $btnListMap{
+  .c-btn-#{nth($btnOperateName,2)}{
+    background-color: nth($btnBgColor,2);
+    color:nth($btnColor,2);
+    @extend %btnCommonStyle;
+  }
+}
+//@debug map_keys($btnListMap);

@@ -1,0 +1,9 @@
+# Created by .ignore support plugin (hsz.mobi)
+.idea
+node_modules
+sassdocs
+test
+npm-debug.log
+scss/style.css
+scss/style.css.map
+.sass-cache

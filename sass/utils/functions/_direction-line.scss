@@ -1,0 +1,62 @@
+@charset "utf-8";
+
+/* ==========================================================================
+   direction-line
+   ========================================================================== */
+/// 对带有 '-' 组合的方向值，进行分解
+///
+/// @access inside
+/// @param { String } $directionGroup -- 带有 '-' 链接的2个或3个方向值，不能相等，且符合 $DIRECTION.
+/// @param { List } $directionFormat [null] -- '-' 是否有指定的验证格式。只有当`$directionGroup`是2个链接的方向时，此 $directionFormat 的值才有效。 指定验证的格式必须length(list)=2.
+/// @return { null | List }
+/// @example SCSS - direction_get function
+///   direction_get(left-right) ==>(left right )
+///   direction_get(left-right,(right-left)) ==>(left right)
+///   direction_get(left-right-bottom) ==> (left-right-bottom)
+///   direction_get(left-rights) ==> null
+///   direction_get(left-left) ==> null
+/// @author Any.Gong
+/// @since 2015.09.06
+@function direction-line($directionGroup,$directionFormat:null) {
+  @if str_index($directionGroup,'-')==null {
+    @return null;
+  }
+  // 第1个 '-' 的索引位置
+  $lineIndex: str_index($directionGroup, '-');
+  //第 1 个值 截取的结束位置不包含 '-' 本身， 因此截取长度 -1
+  $firstStr: str_slice($directionGroup, 1, ($lineIndex)-1);
+  //第 2 个值 截取的开始位置不包含 '-' 本身， 因此截取长度 +1
+  $secondStr: str_slice($directionGroup, ($lineIndex)+1);
+  // 对截取的值，进行方向的验证
+  $firstValid: map_get($DIRECTION, $firstStr);
+  $secondValid: map_get($DIRECTION, $secondStr);
+  //第2个 '-' 索引位置
+  $secondLineIndex: str_index($secondStr, '-');
+  //当有2个 '-' 链接的值
+  @if $secondLineIndex!=null{
+    //第3个值，从原来第2个值的 '-' 位置之后进行截取
+    $thirdStr: str_slice($secondStr, ($secondLineIndex)+1);
+    //重新获取第2个值，从原来第2个值的 '-' 位置之前进行截取。
+    $secondStr: str_slice($secondStr, 1, ($secondLineIndex)-1);
+    // 对截取的值，进行方向的验证
+    $secondValid: map_get($DIRECTION, $secondStr);
+    $thirdValid: map_get($DIRECTION, $thirdStr);
+    //当方向为 3 个的组合时验证的符合条件。3个方向取消方向的组合验证
+    $valid: ($firstValid!=$secondValid and $firstValid!=$thirdValid and $secondValid!=$thirdValid) and ($firstValid!=null  and $secondValid!=null and $firstValid!=null);
+    @if $valid==false {
+      @return null;
+    }
+    @return join((),($firstValid,$secondValid,$thirdValid),space)
+  }
+  //当方向为 2 个的组合时，通过验证的符合条件
+  $valid: ($firstValid!=$secondValid) and ($firstValid!=null  and $secondValid!=null);
+  //当方向为 2 个的组合时，且要进行格式化验证的符合条件
+  $validFormat: $directionFormat!=null and ($valid and (index($directionFormat,$firstValid)!=null and index($directionFormat,$secondValid)!=null))==false;
+  @if $valid==false or $validFormat{
+    @if type_of($directionFormat)!='list' and length($directionFormat)!=2 and $directionFormat!=null{
+      @warn '进行格式化验证值须是 list，且长度必须为 2';
+    }
+    @return null;
+  }
+  @return join($firstValid,$secondValid);
+}

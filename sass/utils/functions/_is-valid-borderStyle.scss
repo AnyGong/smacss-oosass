@@ -1,0 +1,32 @@
+@charset "utf-8";
+
+/* ==========================================================================
+   is-valid-borderStyle
+   ========================================================================== */
+/// 验证边框样式
+///
+/// @access inside
+/// @param { borderStyleList} $borderStyle -- 边框样式列表
+/// @param { num } $validSunLength [ false ] -- 是否需要验证指定的数字的 list 长度
+/// @return { bool }
+/// @author Any.Gong
+/// @since 2015.09.06
+@function is-valid-borderStyle($borderStyleValue,$validSunLength:false) {
+   $borderStyle:(hidden none dotted dashed solid double groove ridge inset outset inherit);
+   $hasCount: 0;
+   @for $i from 1 through length($borderStyleValue) {
+      $singleBorderStyle: nth($borderStyleValue, $i);
+      @if index($borderStyle,$singleBorderStyle)!=null {
+         $hasCount: $hasCount+1;
+      }
+   }
+  @if $hasCount!=length($borderStyleValue){
+    @return false;
+  }
+  @if $validSunLength{
+    @if $hasCount!=$validSunLength{
+      @return false;
+    }
+  }
+  @return true;
+}

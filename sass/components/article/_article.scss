@@ -1,0 +1,20 @@
+@charset "utf-8";
+
+/* ==========================================================================
+   article
+   ========================================================================== */
+.article {
+   line-height: 2em;
+   &.indent {
+      p {
+         text-indent: 2em;
+      }
+   }
+   p{
+      margin-bottom: $articleSectionGap;
+   }
+}
+
+p.indent {
+   text-indent: 2em;
+}

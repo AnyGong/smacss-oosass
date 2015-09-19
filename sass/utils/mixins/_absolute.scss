@@ -1,0 +1,19 @@
+@charset "utf-8";
+
+/* ==========================================================================
+   absolute
+   ========================================================================== */
+
+/// position absolute
+///
+/// @param { length | direction } $anyValue -- 值类型，Only `length(direction-line($anyValue))=2.
+/// @param { length } $length  -- length($length)的值必须 2。
+/// @author Any.Gong
+/// @since 2015.9.16
+@mixin absolute($anyValue,$length) {
+  //为了兼容IE7(strict)模式，absolute 必须设定为两个方向
+  @if length(direction-line($anyValue))!=2 {
+    @error error_message('absolute', '方向长度必须为2个,且非对立');
+  }
+  @include position(absolute, $anyValue, $length);
+}

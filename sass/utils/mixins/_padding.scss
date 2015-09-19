@@ -1,0 +1,19 @@
+@charset "utf-8";
+
+/* ==========================================================================
+   padding
+   ========================================================================== */
+/// 适用于 padding 的简化写法
+///
+/// @param { length | direction } $anyValue -- 值类型，Only [ is-valid-length($anyValue)  ,  direction-line($anyValue)!=null]
+/// @param { length } $length [ null ] -- 如果 $length!=null, length($length)的值必须 为1 或 2。如果 length($anyValue)==3, length($length)也可以为 3。
+/// @example scss - padding mixin
+///   @include padding(left-right,10px) ==> padding-left:10px; padding-right:10px;
+///   @include padding(left-right,10px 12px) ==> padding-left:10px; padding-right:12px;
+///   @include padding(12px 13px 14px) ==> padding-top:10px; padding-right:12px; padding-bottom:14px;
+///   @include padding(null 12px 13px 14px) ==> padding-right:10px; padding-bottom:12px; padding-left:14px;
+/// @author Any.Gong
+/// @since 2015.09.06
+@mixin padding($anyValue,$length:null) {
+  @include optimization-direction-value(padding, $anyValue,$length);
+}

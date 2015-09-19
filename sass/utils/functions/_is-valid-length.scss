@@ -1,0 +1,34 @@
+@charset "utf-8";
+
+/* ==========================================================================
+   is-valid-length
+   ========================================================================== */
+/// 验证带单位的长度类型或0已经auto
+///
+/// @access inside
+/// @param { length | listLength} $lengthValue -- 数值
+/// @param { boolean } $null [ false ] -- null 的值是否需要验证
+/// @param { num } $validSunLength [ false ] -- 是否需要验证指定的数字的 list 长度
+/// @return { bool }
+/// @author Any.Gong
+/// @since 2015.09.06
+@function is-valid-length($length,$null:false,$validSunLength:false) {
+  $hasCount: 0;
+  $unitOther:('auto'  '$inherit' '0');
+  @for $i from 1 through length($length) {
+    $singleLength: nth($length, $i);
+    // 值为 '0,length,$unitOther(根据设定)'
+    @if ($singleLength=='null' and $null) or (type_of($singleLength)=='number' and not unitless($singleLength)) or index($unitOther,$singleLength) {
+      $hasCount: $hasCount+1;
+    }
+  }
+  @if $hasCount!=length($length){
+    @return false;
+  }
+  @if $validSunLength{
+     @if $hasCount!=$validSunLength{
+       @return false;
+     }
+  }
+  @return true;
+}

@@ -1,0 +1,25 @@
+@charset "utf-8";
+
+/* ==========================================================================
+   hide-zoom
+   ========================================================================== */
+/// hidden zoom 触发hack Layout
+///
+/// @example scss - Usage
+///   .element {
+///     @include hide-fix;
+///   }
+/// @example css - CSS Output
+///   .element {
+///     overflow: hidden;
+///   }
+/// @example css - Support IT-IE7 Insert CSS ==>IE7下通过触发 Layout 来清除浮动
+///     *zoom: 1;
+/// @author Any.Gong
+/// @since 15.05.28
+@mixin hide-zoom {
+   overflow: hidden;
+   @if $IT-IE7 {
+      *zoom: 1;
+   }
+}

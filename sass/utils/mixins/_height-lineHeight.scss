@@ -1,0 +1,15 @@
+@charset "utf-8";
+
+/* ==========================================================================
+   height-lineHeight
+   ========================================================================== */
+/// 针对block元素具有高的情况辖，一行文字垂直对齐
+///
+/// @param {length} $height --  block高度
+/// @param {length} $lineHeight [ $height ] --默认等于高度的line-height
+/// @author Any.Gong
+/// @since 2015.09.16
+@mixin height-lineHeight($height,$lineHeight:$height){
+   height: $height;
+   line-height: $lineHeight;
+}

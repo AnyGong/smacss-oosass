@@ -1,0 +1,26 @@
+@charset "utf-8";
+
+/* ==========================================================================
+   _border-top-radius
+   ========================================================================== */
+
+/// border-top-left/right-radius 简化写法
+///
+/// @param { direction } $directionValue -- Only  length(direction-line($directionValue))== ( 2 or 3)
+/// @param { length } $length [ null ] -- 如果 $length!=null, length($length)的值必须 为1 或 2。如果 length($directionValue)==3, length($length)也可以为 3。
+/// @author Any.Gong
+/// @since 2015.09.07
+@mixin border-top-radius($directionValue,$length:null) {
+   // 单1的方向，并且 $directionValue $length 符合要求，就采取单独设定
+   @if  direction-line($directionValue)==null and map_get($DIRECTION,$directionValue)!=null and is-valid-length($length) and length($length)==1 {
+      border-top-#{$directionValue}-radius: $length;
+   }
+   // border-top-radius 后面只支持设定的链接方向为 格式化的 direction (left right)
+   @else if not is-valid-directionLR($directionValue,$length) {
+      @error error_message(border-top-radius, '#{$directionValue}不符合要求,须为：right-left or left-right');
+   }
+   @else {
+      @include optimization-direction-value(border-top, $directionValue, $length, $suffix: radius);
+   }
+}
+   

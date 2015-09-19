@@ -1,0 +1,20 @@
+@charset "utf-8";
+
+/* ==========================================================================
+   is-valid-directionTB
+   ========================================================================== */
+
+/// 验证 border-left/right-radius 是否传入了指定的方向格式化值为(top bottom)
+///
+/// @access private
+/// @param { direction-line} $value -- direction-line 值
+/// @param { length } $length  -- length($length)<3 and not is-valid-length($length)
+/// @return { bool }
+/// @author Any.Gong
+/// @since 2015.09.08
+@function is-valid-directionTB($value,$length) {
+   @if not is-valid-direction($value,(top bottom),$length) {
+      @return false;
+   }
+   @return true
+}

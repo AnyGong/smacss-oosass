@@ -1,0 +1,24 @@
+@charset "utf-8";
+
+/* ==========================================================================
+   is-valid-direction
+   ========================================================================== */
+/// 验证 is-valid-direction 是否传入了指定的格式化的方向的值
+///
+/// @access private
+/// @param { direction-line} $value -- direction-line 值
+/// @param { directionList } $validValue  -- 需要格式化验证的方向值
+/// @param { length } $length  -- length($length)<3 and not is-valid-length($length)
+/// @return { bool }
+/// @author Any.Gong
+/// @since 2015.09.08
+@function is-valid-direction($value,$validValue,$length) {
+  $getDirection: direction-line($value, $validValue);
+  @if $getDirection==null {
+    @return false;
+  }
+  @if $getDirection!=null and length($length)<3 and not is-valid-length($length) {
+    @return false;
+  }
+  @return true;
+}

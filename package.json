@@ -1,0 +1,49 @@
+{
+  "name": "smacss-oosass",
+  "version": "0.1.0",
+  "description": "smacss oocss write css",
+  "author": "Any.Gong",
+  "main": [
+    "sass/style.scss"
+  ],
+  "scripts": {
+    "sassdoc": "gulp sassdoc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AnyGong/smacss-oosass"
+  },
+  "keywords": [
+    "scss",
+    "smacss",
+    "smacss-scss",
+    "sass",
+    "oocss"
+  ],
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-ruby-sass": "^2.0.3",
+    "sassdoc": "^2.1.15"
+  },
+  "sassdoc": {
+    "source": "sass/**/*.scss",
+    "dest": "sassdocs",
+    "verbose": true,
+    "display": {
+      "access": [
+        "public",
+        "private",
+        "inside",
+        "constant"
+      ],
+      "alias": false,
+      "watermark": false
+    },
+    "groups": {
+      "undefined": "general",
+      "foo": "Foo group",
+      "bar": "Bar group"
+    }
+  }
+}

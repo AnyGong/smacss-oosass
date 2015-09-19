@@ -1,0 +1,25 @@
+@charset "utf-8";
+
+/* ==========================================================================
+   _border-left-radius
+   ========================================================================== */
+
+/// border-top/bottom-right-radius 简化写法
+///
+/// @param { direction } $directionValue -- Only  length(direction-line($directionValue))== ( 2 or 3)
+/// @param { length } $length [ null ] -- 如果 $length!=null, length($length)的值必须 为1 或 2。如果 length($directionValue)==3, length($length)也可以为 3。
+/// @author Any.Gong
+/// @since 2015.09.07
+@mixin border-left-radius($directionValue,$length:null) {
+   // border-left-radius 后面只支持设定前面的链接方向为 格式化的 direction (top bottom)
+   @if not is-valid-directionTB($directionValue,$length) {
+      @error error_message(border-left-radius, '#{$value}不符合要求,须为：top-bottom or bottom-top');
+   }
+   $getDirection: direction-line($directionValue);
+   // 反向调用单1方向  top-left
+   @include border-top-radius(left, nth($length, 1));
+   // 反向调用单1方向  bottom-left
+   @include border-bottom-radius(left, if(length($length)==1, nth($length, 1), nth($length, 2)));
+}
+   
+   

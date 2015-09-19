@@ -1,0 +1,30 @@
+@charset "utf-8";
+
+/* ==========================================================================
+   position
+   ========================================================================== */
+
+/// 各种类型的定位属性设置
+///
+/// @access inside
+/// @param { string } $position -- only value `[relative , fixed , absolute]`
+/// @param { length | direction } $anyValue -- 值类型，Only `direction-line($anyValue)`
+/// @param { length } $length -- 如果 length($length)的值必须 为1 或 2。
+/// @author Any.Gong
+/// @since 2015.9.16
+@mixin position($position,$anyValue,$length) {
+  position: $position;
+  $getDirection: direction-line($anyValue);
+
+  //当 方向都不通过验证 or 长度未通过验证 or 长度大于3
+  @if (not map_has_key($DIRECTION, $anyValue) and $getDirection==null) or not is-valid-length($length) or length($getDirection)>3 {
+    @error error_message('$position', '#{$anyValue}未通过方向验证，或#{$length}未通过长度验证');
+  }
+  //当 方向为2，必须通过验证：非两个对立的方向值
+  $oppositionDirection: direction-line($anyValue,(left bottom))!=null or direction-line($anyValue,(right bottom))!=null or direction-line($anyValue,(top left))!=null or direction-line($anyValue,(top right))!=null;
+  @if length($getDirection)==2 and not $oppositionDirection {
+    @error error_message($position,'在position的设定情况下，当设定为两个方向时，请注意设定非两个对立的方向值。#{$anyValue}不符合要求');
+  }
+  #{if($getDirection==null,$anyValue,nth($getDirection,1))}: nth($length, 1);
+  #{if($getDirection!=null,nth($getDirection,2),null)}: if(length($length)==1, $length, nth($length, 2));
+}

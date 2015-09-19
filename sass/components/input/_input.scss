@@ -1,0 +1,11 @@
+@charset "utf-8";
+
+/* ==========================================================================
+   _input.scss
+   ============ ============================================================== */
+.input {
+  height: $inputBaseHeight;
+  padding: $inputPadTB #{$inputPadLR};
+  border: 1px solid #{$inputBorderColor};
+  border-radius: $inputBorderRadius;
+}

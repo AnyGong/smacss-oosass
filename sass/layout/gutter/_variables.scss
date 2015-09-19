@@ -1,0 +1,14 @@
+@charset "utf-8";
+
+/* ==========================================================================
+   variables
+   ========================================================================== */
+/**
+ * 默认空隙全局设定  padding margin
+ * gutter 有空隙
+ * gutter 无空隙
+ */
+
+$gutter: 15px;
+$gutterProperty: (t, r, b, l, tr, tb, tl, rb, rl, bl, trb, trl, tbl, rbl);
+$directionEllipsis: (t:top, r:right, b:bottom, l:left);

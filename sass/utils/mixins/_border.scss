@@ -1,0 +1,45 @@
+@charset "utf-8";
+
+/* ==========================================================================
+   border
+   ========================================================================== */
+/// border 简化写法
+///
+/// @param { directionLine } $directionValue -- 值类型必须 direction-line($directionValue)!=null;
+/// @param { borderStyle | border | color | borderZip } $anyValue [ null ] -- 如果 border的zip值不止1个，那每个zip必须用单独括起来并空格隔开。 如果 $directionValue!=null, length($anyValue)的值必须 为1 或 2。如果 length($directionValue)==3, length($anyValue)可以为 3。
+/// @author Any.Gong
+/// @since 2015.09.06`
+@mixin border($directionValue,$anyValue) {
+  $firstStr: nth($anyValue, 1);
+  // $anyValue 长度
+  $anyValueLength: length($anyValue)==1 or length($anyValue)==2;
+  // 验证 $anyValue 是否符合 color or length borderStyle 类型值
+  $anyValueType: is-valid-color($anyValue) or is-valid-length($anyValue) or is-valid-borderStyle($anyValue);
+  //组合验证
+  $anyValueValidGroup: $anyValueLength and $anyValueType;
+  $secondStr: null;
+  $thirdStr: null;
+  // 获取方向值
+  $getDirection: direction-line($directionValue);
+  @if (type_of($firstStr)=='string' and $anyValueValidGroup) or $getDirection==null {
+    @error error_message(border, '#{$anyValue}不是有效的任意border样式或#{$directionValue}不符合方向链接要求');
+  }
+  @else if type_of($firstStr)=='string' and $anyValueValidGroup {
+    $secondStr: if($anyValueLength==1, $firstStr, nth($anyValue, 2));
+    $thirdStr: if(length($anyValue)==2, $firstStr, nth($anyValue, 3));
+  }
+  @else if type_of($anyValue)=='list' and length(nth($anyValue,2))==1 {
+    $firstStr: $anyValue;
+    $secondStr: $firstStr;
+    $thirdStr: $firstStr;
+  }
+  @else if type_of($firstStr)=='list' and type_of(nth($anyValue,2))=='list' {
+    $secondStr: nth($anyValue, 2);
+    $thirdStr: if(length($anyValue)==2, $firstStr, nth($anyValue, 3));
+  }
+  border-#{nth($getDirection, 1)}: $firstStr;
+  border-#{nth($getDirection, 2)}: $secondStr; //如果只有1个方向值，那第2方向的值就默认为第1方向的个值
+  @if length($getDirection)==3 {
+    border-#{nth($getDirection, 3)}: $thirdStr; //如果只有1个或2个方向值，那第3方向的值就默认为第1方向的个值
+  }
+}

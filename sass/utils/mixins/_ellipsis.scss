@@ -1,0 +1,31 @@
+@charset "utf-8";
+
+/* ==========================================================================
+   ellipsis
+   ========================================================================== */
+/// 对于需要设置单行的文本字符串当文字个数超过容器的宽度时，显示省略号
+///
+/// 1、仅适用于单行文本(文本中请勿出现换行符号) <br>
+/// 2、必须设置容器的宽度。
+///
+/// @group help
+/// @example scss - Usage
+///   .element {
+///     @include ellipsis;
+///   }
+/// @example css - CSS Output
+///   .element {
+///     overflow: hidden;
+///     text-overflow: ellipsis;
+///     white-space: nowrap;
+///     word-wrap: normal;
+///   }
+/// @author Any.Gong
+/// @since 15.02.26
+@mixin ellipsis {
+   overflow: hidden;
+   text-overflow: ellipsis;
+   max-width: 100%;
+   white-space: nowrap;
+   word-wrap: normal;
+}

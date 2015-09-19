@@ -1,0 +1,24 @@
+@charset "utf-8";
+@import "../variables";
+
+/* ==========================================================================
+   clear-fix
+   ========================================================================== */
+/// clear 清除浮动
+///
+/// @group help
+/// @author Any.Gong
+/// @since 15.02.08
+@mixin clear-fix {
+   &:before,
+   &:after {
+      content: '\20';
+      display: table;
+   }
+   &:after {
+      clear: both;
+   }
+   @if $IT-IE7 {
+      *zoom: 1;
+   }
+}
