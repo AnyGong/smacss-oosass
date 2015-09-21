@@ -11,9 +11,9 @@ gulp.task('sassdoc', function () {
 });
 
 gulp.task('sass', function () {
-    return sass('scss/style.scss', {noCache: true})
+    return sass('sass/style.scss', {noCache: true,style:'compressed'})
         .on('error', sass.logError)
-        .pipe(gulp.dest('scss/'))
+        .pipe(gulp.dest('sass/'))
 });
 gulp.task('watch', function () {
     gulp.watch(pkg.source, ['sassdoc']);
