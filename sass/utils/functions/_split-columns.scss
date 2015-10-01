@@ -1,0 +1,37 @@
+@charset "utf-8";
+
+/* ==========================================================================
+   均分每列
+   ========================================================================== */
+
+/// 适用于在一个容器中对列数进行均分
+///
+/// @param {List} $colsList  --自定义定义，only （自定义列数字, 自定义列宽度）
+/// @param {String} $containerType  --需返回的容器内省 only 【 ‘wrap’, 'cols'】
+/// @param {Length} $width [$base-wrap-width]  --外包裹的容器宽度，默认站点设定的宽度
+/// @author Any.Gong
+/// @since 2015.10.01
+@function split-columns($colsList,$containerType,$width:$base-wrap-width) {
+  $cols: nth($colsList, 1);
+  $colsWidth: nth($colsList, 2);
+
+  //实际可均分的每个列宽度
+  $splitColsWidth: $width/$cols;
+
+  //自定义每列的剩余填充宽度 = 实际可均分的每个列宽度 - 自定义列的宽度
+  $surplusColsWidth: ($splitColsWidth)-($colsWidth);
+
+  //由于最后一列不参与分配，紧挨容器的右边。因此最后一列的填充宽度，需分配到自定义列个数每个剩余填充宽度
+  //实际每列剩余填充宽度 = 自定义每列的剩余填充宽度 + ( 自定义每列的剩余填充宽度 / 自定义列数 )
+  $realFillingWidth: $surplusColsWidth+$surplusColsWidth/$cols;
+
+  @if $containerType=='wrap' {
+    //如果是容器的返回形式，那就是给实际的宽度
+    //实际总容器宽度 = ( 实际每列剩余填充宽度 + 自定义每列宽度 ) * 自定义列数
+    @return ($realFillingWidth+$colsWidth)*$cols;
+  } @else if $containerType=='cols' {
+    //如果是列的返回形式，那就是给填充宽度 margin-right
+    @return $realFillingWidth;
+  }
+  @return '@function `split-columns` 接受的返回容器类型为  wrap  cols'
+}
