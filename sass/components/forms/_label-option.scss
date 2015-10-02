@@ -17,3 +17,14 @@
     }
   }
 }
+
+//列表形式
+.label-option-float {
+  @include clear-fix;
+  .list-option-title,.label-option {
+    @include float(left);
+  }
+  .list-option-list {
+    @include hide-zoom;
+  }
+}

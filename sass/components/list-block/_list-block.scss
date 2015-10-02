@@ -1,9 +1,9 @@
 @charset "utf-8";
 
 /* ==========================================================================
-   _list.scss
+   _list-block.scss
    ========================================================================== */
-.list {
+.list-block {
   margin-bottom: $listItemGap;
   @include clear-fix;
   &.no-gutter {
