@@ -12,5 +12,5 @@
 /// @author Any.Gong
 /// @since 2015.09.06
 @mixin margin($anyValue,$length:null) {
-   @include optimization-direction-value(margin, $value,$length);
+   @include optimization-direction-value(margin, $anyValue,$length);
 }
