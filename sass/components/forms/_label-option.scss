@@ -1,0 +1,30 @@
+@charset "utf-8";
+
+/* ==========================================================================
+   radio 适用于模拟的单选效果
+   ========================================================================== */
+.label-option {
+  display: block;
+  input[type='radio'], input[type='checkbox'] {
+    position: relative;
+    z-index: -1;
+    width: 0;
+    height: 0;
+    margin-right: 0;
+    font-size: 0;
+    @-moz-document url-prefix() {
+      margin-left: -14px;
+    }
+  }
+}
+
+//列表形式
+.label-option-float {
+  @include clear-fix;
+  .list-option-title,.label-option {
+    @include float(left);
+  }
+  .list-option-list {
+    @include hide-zoom;
+  }
+}

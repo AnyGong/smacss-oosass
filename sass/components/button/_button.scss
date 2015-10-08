@@ -4,10 +4,11 @@
    _button.scss
    ========================================================================== */
 @each $btnOperateName,$btnBgColor,$btnColor in $btnListMap{
-  .c-btn-#{nth($btnOperateName,2)}{
+  .#{nth($btnOperateName,2)}-btn{
     background-color: nth($btnBgColor,2);
     color:nth($btnColor,2);
-    @extend %btnCommonStyle;
   }
 }
-//@debug map_keys($btnListMap);
+.button{
+  @extend %btnCommonStyle;
+}

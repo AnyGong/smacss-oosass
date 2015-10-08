@@ -4,6 +4,6 @@ node_modules
 sassdocs
 test
 npm-debug.log
-scss/style.css
-scss/style.css.map
+sass/style.css
+sass/style.css.map
 .sass-cache
