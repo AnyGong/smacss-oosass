@@ -15,6 +15,7 @@
    $height: nth($size, length($size));
    $foreground-color: nth($color, 1);
    $background-color: if(length($color) == 2, nth($color, 2), transparent);
+   display: inline-block;
    height: 0;
    width: 0;
    @if ($direction == up) or ($direction == down) or ($direction == right) or ($direction == left) {
