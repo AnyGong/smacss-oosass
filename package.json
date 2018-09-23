@@ -1,7 +1,7 @@
 {
   "name": "smacss-oosass",
   "version": "0.2.0",
-  "description": "smacss oocss write css",
+  "description": "smacss oocss write css 测试更新",
   "author": "Any.Gong",
   "main": [
     "sass/style.scss"
